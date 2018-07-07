@@ -101,7 +101,7 @@ bot.user.setGame("Zernax Bot | V.0.1 ");
 	
 	
 	
-botz.setNick("John")
+
 
 //  client.user.setActivity(`Being a bot on ${client.guilds.size} servers`);
 
