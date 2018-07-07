@@ -162,12 +162,12 @@ bot.on('guildMemberAdd', member => {
    
   
   // Send the message to a designated channel on a server:
-  const channel = member.guild.channels.find('name', 'join-quit-??');
+  const channel = member.guild.channels.find('name', 'join-quit');
   // Do nothing if the channel wasn't found on this server
   if (!channel) return;
   // Send the message, mentioning the member
   channel.sendMessage(`Welcome to the server!, ${member}`);
-    member.addRole(member.guild.roles.find(role => role.name === "Membre 💎 "));
+    member.addRole(member.guild.roles.find(role => role.name === "Membre"));
 
 // Let's pretend you mentioned the user you want to add a role to (!addrole @user Role Name):
 
