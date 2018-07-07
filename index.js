@@ -23,7 +23,7 @@ clbot.configure({botapi: process.env.CLEVER_BOT_TOKEN});
 var cleverbot = require("cleverbot.io"),
 
 
-var ecksdee = 0;
+
 var servers = {};
 var points = JSON.parse(fs.readFileSync("./points.json", "utf8"));
 const snekfetch = require('snekfetch');
