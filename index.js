@@ -19,7 +19,7 @@ const ddiff = require('return-deep-diff');
 const prefix = "!";
 const fs = require("fs");
 const ytdl = require('ytdl-core');
-clbot.configure({botapi: "CC43sDxdsPJDs4as2DVngVwWPEA"});
+clbot.configure({botapi: "CC62zyfFyOxLPDFAokYg2pooS5Q"});
 
 
 
