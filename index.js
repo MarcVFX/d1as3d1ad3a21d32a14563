@@ -22,7 +22,7 @@ const ytdl = require('ytdl-core');
 clbot.configure({botapi: process.env.CLEVER_BOT_TOKEN});
 var cleverbot = require("cleverbot.io"),
 
-var cli = new Discord.Client({autoReconnect:true});
+
 var ecksdee = 0;
 var servers = {};
 var points = JSON.parse(fs.readFileSync("./points.json", "utf8"));
@@ -460,7 +460,7 @@ message.channel.send(embed)
             .addField("Commandes BOT", "   !help : show commands! \n !hug : hug someone \n !kiss : kiss someone \n !guilds : show guilds \n !yt : play a video \n !purgemessage : bulk delete message \n !invites : show invites for the server \n !ping : ping a server \n  !8ball : 8ball command \n !uptime : show the uptime of the server \n")
             
 		
-            .setFooter("Copyright © 2018 ZernaxBot - All Rights Reserved")
+            .setFooter("Copyright Â© 2018 ZernaxBot - All Rights Reserved")
             .setThumbnail(message.author.avatarURL)
         message.channel.sendEmbed(help_embed);
 	break;
