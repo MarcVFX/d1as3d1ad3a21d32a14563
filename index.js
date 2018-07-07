@@ -11,7 +11,7 @@ const clbot = new Cleverbot;
 
 
 const Discord = require('discord.js');
-var Discordz = require('discord.js');
+
 const path = require('path');
 const bot = new Discord.Client();
 
@@ -20,18 +20,18 @@ const prefix = "!";
 const fs = require("fs");
 const ytdl = require('ytdl-core');
 clbot.configure({botapi: process.env.CLEVER_BOT_TOKEN});
-var cleverbot = require("cleverbot.io"),
 
 
 
-var servers = {};
+
+ servers = {};
 var points = JSON.parse(fs.readFileSync("./points.json", "utf8"));
 const snekfetch = require('snekfetch');
  const arraySort = require("array-sort");
  const table = require("table");
  const send = require("quick.hook")
 function play(connection, message) {
-    var server = servers[message.guild.id];
+     server = servers[message.guild.id];
  
     server.dispatcher = connection.playStream(ytdl(server.queue[0], {filter: "audioonly"}));
  server.dispatcher.on('start', () => {
@@ -81,10 +81,8 @@ bot.on('ready', function() {
 	
 	
 bot.on('ready',() => {
-	 function dotdotdot(cursor, times, string) {
-  return Array(times - Math.abs(cursor % (times * 2) - times) + 1).join(string);
-}
-  var cursor = 0;
+	 
+  
 bot.user.setGame("Zernax Bot | V.0.1 ");
   
   
@@ -153,7 +151,7 @@ bot.on('message', (message) => {
 bot.on('message', (message) => {
    
 if (message.author.equals(bot.user)) return;
-	 var argsz = message.content.substring(prefix.length).split(" ")
+	
 	
  
    
