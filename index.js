@@ -25,7 +25,7 @@ clbot.configure({botapi: process.env.CLEVER_BOT_TOKEN});
 
 
  servers = {};
-var points = JSON.parse(fs.readFileSync("./points.json", "utf8"));
+
 const snekfetch = require('snekfetch');
  const arraySort = require("array-sort");
  const table = require("table");
