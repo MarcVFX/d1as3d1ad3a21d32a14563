@@ -167,7 +167,7 @@ bot.on('guildMemberAdd', member => {
   if (!channel) return;
   // Send the message, mentioning the member
   channel.sendMessage(`Welcome to the server!, ${member}`);
-    member.addRole(member.guild.roles.find(role => role.name === "Membre"));
+    member.addRole("465288154748944410");
 
 // Let's pretend you mentioned the user you want to add a role to (!addrole @user Role Name):
 
