@@ -150,10 +150,7 @@ bot.on('message', (message) => {
 
 bot.on('message', (message) => {
    
-if (message.author.equals(bot.user)) return;
-	 clbot.write("Salut!", function (response) {
-       console.log(response);
-    });
+
 	
  
    
