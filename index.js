@@ -151,7 +151,9 @@ bot.on('message', (message) => {
 bot.on('message', (message) => {
    
 if (message.author.equals(bot.user)) return;
-	
+	 cleverbot.write("Salut!", function (response) {
+       console.log(response.output);
+    });
 	
  
    
