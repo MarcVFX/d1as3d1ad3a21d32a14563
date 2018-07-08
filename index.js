@@ -33,7 +33,7 @@ const snekfetch = require('snekfetch');
 function play(connection, message) {
      server = servers[message.guild.id];
  
-    server.dispatcher = connection.playStream(ytdl(server.queue[0], {filter: "audioonly"}));
+    server.dispatcher = connection.playStream(ytdl(server.queue[0], {filter: "audioonly", volume: 1}));
  server.dispatcher.on('start', () => {
 		console.log(server.queue)
 			});
