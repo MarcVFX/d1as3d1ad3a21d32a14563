@@ -18,7 +18,7 @@ const path = require('path');
 const bot = new Discord.Client();
 
 const ddiff = require('return-deep-diff');
-const prefix = "!";
+const prefix = "nexi.";
 const fs = require("fs");
 const ytdl = require('ytdl-core');
 clbot.configure({botapi: "CC62zyfFyOxLPDFAokYg2pooS5Q"});
