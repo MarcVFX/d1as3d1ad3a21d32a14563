@@ -1,16 +1,4 @@
-const Eris = require('eris');
- 
-const bot3 = new Eris("NDY1Mzg1MjkyNjM1ODMyMzM4.DiMvqw.ZSBwo-67GjLAFDOUwGGj74qTGj8");   // Replace DISCORD_BOT_TOKEN in .env with your bot accounts token
- 
-bot3.on('ready', () => {                                // When the bot is ready
-    console.log('Ready!');                             // Log "Ready!"
-});
- 
-bot3.on('messageCreate', (msg) => {                     // When a message is created
-    
-});
- 
-bot3.connect();                                         // Get the bot to connect to Discord
+
 
 const http = require('http');
 const express = require('express');
