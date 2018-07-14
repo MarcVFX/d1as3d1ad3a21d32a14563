@@ -160,24 +160,7 @@ bot.on('message', (message) => {
   
   });
 
-bot.on('guildMemberAdd', member => {
-   
-  
-  // Send the message to a designated channel on a server:
-  const channel = member.guild.channels.find('name', 'join-quit');
-  // Do nothing if the channel wasn't found on this server
-  if (!channel) return;
-  // Send the message, mentioning the member
-  channel.sendMessage(`Welcome to the server!, ${member}`);
-    member.addRole("465288154748944410");
 
-// Let's pretend you mentioned the user you want to add a role to (!addrole @user Role Name):
-
-
-// or the person who made the command: let member = message.member;
-
-// Add the role!
-});
 
 
 
@@ -251,29 +234,7 @@ case "join":
   //AIDE
     
 	  
-	    case "kick":
-    let modRole = message.guild.roles.find("name", "Mods");
-     if(!message.member.roles.some(r=>["Staff?? ","??Administrateur??"].includes(r.name))) {
-      return message.reply("you don't have the permission to use this command.").catch(console.error);
-    }
-    if(message.mentions.users.size === 0) {
-      return message.reply("Please mention a user to kick").catch(console.error);
-    }
-    let kickMember = message.guild.member(message.mentions.users.first());
-    if(!kickMember) {
-      return message.reply("That user does not seem valid");
-    
-	
-	let member = message.mentions.members.first() || message.guild.members.get(args[0]);
-	
-	
-    if(!message.guild.member(bot.user).hasPermission("KICK_MEMBERS")) {
-      return message.reply("I don't have the permissions (KICK_MEMBER) to do this.").catch(console.error);
-    }
-    kickMember.kick().then(member => {
-      message.reply(`${member.user.username} was succesfully kicked.`).catch(console.error);
-    }).catch(console.error)
-  break;
+	   
   
 
 	  
@@ -502,19 +463,7 @@ message.channel.send(embed)
            
             if (message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
 	   break;
-	   case "purgemessage":
-	   
-	  if(!message.member.roles.some(r=>["Staff?? ", "??Administrateur??"].includes(r.name))) {
-      return message.reply("you don't have the permission to use this command.").catch(console.error);
-    }
-	else
-	{
-	   let messagecount = parseInt(args[1]);
-  message.channel.fetchMessages({limit: messagecount}).then(messages => message.channel.bulkDelete(messages)).catch(message.reply("Error"));
-  return message.reply("Cleaned the chat").catch(console.error);
-  
-	}
-	   break;
+	  
 	   
 
   
