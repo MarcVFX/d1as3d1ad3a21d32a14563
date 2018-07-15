@@ -77,8 +77,7 @@ bot.on("debug", (e) => console.info(e));
 
 
 
-bot.on('ready', function() {
-    console.log("")},
+
 
 	
 	
@@ -130,7 +129,7 @@ function function3() {
 	
 
        
-}));
+});
 bot.on('message', (message) => {
   if (message.author.equals(bot.user)) return;
   if (message.mentions.members.size !== 0){
@@ -232,7 +231,205 @@ case "join":
 
   
   //AIDE
+  case "hug":
+  if (message.mentions.members.size !== 0){
+ if (!message.mentions.members.first().user.username === message.isMentioned(message.author)) {
+ const hembed = new Discord.RichEmbed()
+     .setColor(`RANDOM`)
+     .setTitle(`${message.author.username} gave ${message.mentions.members.first().user.username} a hug!`)
+     .setImage("https://media.giphy.com/media/jT6FRVz9ivIgE/giphy.gif")
+ message.channel.send({
+     embed: hembed
+ })
+}
+ return;
+}
+ break;
+case "uptime":
+ let totalSeconds = (bot.uptime / 1000);
+let hours = Math.floor(totalSeconds / 3600);
+totalSeconds %= 3600;
+let minutes = Math.floor(totalSeconds / 60);
+let seconds = Math.ceil(totalSeconds % 60);
+ let uptime = `${hours} hours, ${minutes} minutes and ${seconds} seconds`;
+ return message.reply(uptime);
+ break;
+case "rps":
+  var choice = args[1];
+if (choice == "paper" || choice == "p") {
+var numb = Math.floor(Math.random() * 100);
+if (numb <= 50) {
+var choice2 = "paper";
+} else if (numb > 50) {
+var choice2 = "rock";
+} else {
+var choice2 = "scissors";
+}
+if (choice2 == "scissors") {
+var response = "I'm choosing **Scissors**! :v: I win!"
+} else if (choice2 == "paper") {
+var response = "I'm choosing **Paper**! :hand_splayed: It's a tie!"
+} else {
+var response = "I'm choosing **Rock**! :punch: You win!"
+}
+message.channel.send(response);
+} else if (choice == "rock" || choice == "r") {
+var numb = Math.floor(Math.random() * 100);
+if (numb <= 50) {
+var choice2 = "paper";
+} else if (numb > 50) {
+var choice2 = "rock";
+} else {
+var choice2 = "scissors";
+}
+if (choice2 == "paper") {
+var response = "I'm choosing **Paper**! :hand_splayed: I win!"
+} else if (choice2 == "rock") {
+var response = "I'm choosing **Rock**! :punch: It's a tie!"
+} else {
+var response = "I'm choosing **Scissors**! :v: You win!"
+}
+message.channel.send(response);
+} else if (choice == "scissors" || choice == "s") {
+var numb = Math.floor(Math.random() * 100);
+if (numb <= 50) {
+var choice2 = "paper";
+} else if (numb > 50) {
+var choice2 = "rock";
+} else {
+var choice2 = "scissors";
+}
+if (choice2 == "rock") {
+var response = "I choose **Paper**! :hand_splayed: You win!"
+} else if (choice2 == "scissors") {
+var response = "I choose **Scissors**! :v: It's a tie!"
+} else {
+var response = "I choose **Rock**! :punch: I win!"
+}
+message.channel.send(response);
+} else {
+message.channel.send(`You need to say \`!rps\` <rock|paper|scissors>`);
+}
+ break;
+ case "kiss":
+  if (message.mentions.members.size !== 0){
+ if (!message.mentions.members.first().user.username === message.isMentioned(message.author)) {
+ const hembed = new Discord.RichEmbed()
+     .setColor(`RANDOM`)
+     .setTitle(`${message.author.username} gave ${message.mentions.members.first().user.username} a kiss!`)
+     .setImage("https://i.gifer.com/2II9.gif")
+ message.channel.send({
+     embed: hembed
+ })
+ return;
+}
+  }
+ break;
+ case "8ball":
+  if (!args[2]) return message.reply("Please ask a full question!");
+let replies = ["Yes, Certainly :8ball:", "No, Never :8ball:", "Please ask again :8ball:"]
+let result = Math.floor((Math.random() * replies.length));
+
+let question = args.slice().join(" ");
+
+let embedz = new Discord.RichEmbed()
+ .setAuthor(message.author.username + " asked : " + question)
+ .setColor("#D3D3D3")
+ .addField("Answer", "Asked by " + message.author.tag + "\nAnswer: " + replies[result] + "")
+
+message.channel.send(embedz)
+ break;
+ case "invites":
+     (async () => {
+let invites = await message.guild.fetchInvites().catch(error => {
+ return message.channel.send('Sorry, I don\'t have the proper permissions to view invites!');
+});
+invites = invites.array();
+arraySort(invites, 'Uses', { reverse: true})
+
+let possibleinvites = [['User', 'Uses' ]];
+invites.forEach(function(invites) {
+
+possibleinvites.push([invites.inviter.username,invites.uses + "  " ]);
+ 
+ 
+})
+
+
+
+message.channel.send("Invite list : ");  
+message.channel.send(`\`\`\`${table.table(possibleinvites)}\`\`\``);
+})();
+ 
+
+
+ break;
+ 
+ case "ping":
+ var embed = new Discord.RichEmbed()
+.setDescription(`**${message.author.tag}** | :ping_pong: Ping : ${bot.ping}ms`)
+.setColor(0xCB5A5E)
+message.channel.send(embed)
+.catch(console.error);
+ break;
+ case "guilds":
+  // Lets define our array of guilds
+const guildArray = bot.guilds.map((guild) => {
+return `${guild.name} : ${guild.members.size} members`
+})
+
+// And send it
+message.channel.send(`\`\`\`${guildArray.join("\n")}\`\`\``)
+ break;
+case "help":
+help_embed = new Discord.RichEmbed()
+     .setColor('#4C1B1B')
+     .addField("Commandes BOT", "   !help : show commands! \n !hug : hug someone \n !kiss : kiss someone \n !guilds : show guilds \n !yt : play a video \n !purgemessage : bulk delete message \n !invites : show invites for the server \n !ping : ping a server \n  !8ball : 8ball command \n !uptime : show the uptime of the server \n")
+     
+ 
+     .setFooter("Copyright © 2018 ZernaxBot - All Rights Reserved")
+     .setThumbnail(message.author.avatarURL)
+ message.channel.sendEmbed(help_embed);
+break;
+ 
+case "play":
+     if (!args[1]) {
+         message.channel.sendMessage("Please provide a link");
+         return;
+     }
+
+     if (!message.member.voiceChannel) {
+         message.channel.sendMessage("You must be in a voice channel");
+         return;
+     }
+
+     if(!servers[message.guild.id]) servers[message.guild.id] = {
+         queue: []
+     };
+
+     var server = servers[message.guild.id];
+
+     server.queue.push(args[1]);
+ message.channel.sendMessage(args[1] + "Has been added to the queue");
+ 
     
+     if (!message.guild.voiceConnection) message.member.voiceChannel.join().then(function(connection) {
+         play(connection, message);
+     });
+     break;
+
+
+ 
+   case "skip":
+     var server = servers[message.guild.id];
+
+     if (server.dispatcher) server.dispatcher.end();
+     break;
+ case "stop":
+     var server = servers[message.guild.id];
+    
+     if (message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
+break;
 	  
 	   
   
@@ -246,232 +443,22 @@ case "join":
   
   
   
-}
+})
 
-
-  	function function34() {
-		if (!message.guild.voiceConnection) {
-        message.channel.sendMessage("I am not in a discord channel. Add me by typing !join")
-        }
-		else{
-  
-		}
-
-}
 
   
 
   
-    switch (args[0]) {
       
-		case "hug":
-         if (message.mentions.members.size !== 0){
-		if (!message.mentions.members.first().user.username === message.isMentioned(message.author)) {
-        const hembed = new Discord.RichEmbed()
-            .setColor(`RANDOM`)
-            .setTitle(`${message.author.username} gave ${message.mentions.members.first().user.username} a hug!`)
-            .setImage("https://media.giphy.com/media/jT6FRVz9ivIgE/giphy.gif")
-        message.channel.send({
-            embed: hembed
-        })
-    }
-        return;
-    }
-		break;
-      case "uptime":
-        let totalSeconds = (bot.uptime / 1000);
-let hours = Math.floor(totalSeconds / 3600);
-totalSeconds %= 3600;
-let minutes = Math.floor(totalSeconds / 60);
-let seconds = Math.ceil(totalSeconds % 60);
-        let uptime = `${hours} hours, ${minutes} minutes and ${seconds} seconds`;
-        return message.reply(uptime);
-        break;
-      case "rps":
-         var choice = args[1];
-  if (choice == "paper" || choice == "p") {
-    var numb = Math.floor(Math.random() * 100);
-    if (numb <= 50) {
-      var choice2 = "paper";
-    } else if (numb > 50) {
-      var choice2 = "rock";
-    } else {
-      var choice2 = "scissors";
-    }
-    if (choice2 == "scissors") {
-      var response = "I'm choosing **Scissors**! :v: I win!"
-    } else if (choice2 == "paper") {
-      var response = "I'm choosing **Paper**! :hand_splayed: It's a tie!"
-    } else {
-      var response = "I'm choosing **Rock**! :punch: You win!"
-    }
-    message.channel.send(response);
-  } else if (choice == "rock" || choice == "r") {
-    var numb = Math.floor(Math.random() * 100);
-    if (numb <= 50) {
-      var choice2 = "paper";
-    } else if (numb > 50) {
-      var choice2 = "rock";
-    } else {
-      var choice2 = "scissors";
-    }
-    if (choice2 == "paper") {
-      var response = "I'm choosing **Paper**! :hand_splayed: I win!"
-    } else if (choice2 == "rock") {
-      var response = "I'm choosing **Rock**! :punch: It's a tie!"
-    } else {
-      var response = "I'm choosing **Scissors**! :v: You win!"
-    }
-    message.channel.send(response);
-  } else if (choice == "scissors" || choice == "s") {
-    var numb = Math.floor(Math.random() * 100);
-    if (numb <= 50) {
-      var choice2 = "paper";
-    } else if (numb > 50) {
-      var choice2 = "rock";
-    } else {
-      var choice2 = "scissors";
-    }
-    if (choice2 == "rock") {
-      var response = "I choose **Paper**! :hand_splayed: You win!"
-    } else if (choice2 == "scissors") {
-      var response = "I choose **Scissors**! :v: It's a tie!"
-    } else {
-      var response = "I choose **Rock**! :punch: I win!"
-    }
-    message.channel.send(response);
-  } else {
-    message.channel.send(`You need to say \`!rps\` <rock|paper|scissors>`);
-  }
-        break;
-		case "kiss":
-         if (message.mentions.members.size !== 0){
-		if (!message.mentions.members.first().user.username === message.isMentioned(message.author)) {
-        const hembed = new Discord.RichEmbed()
-            .setColor(`RANDOM`)
-            .setTitle(`${message.author.username} gave ${message.mentions.members.first().user.username} a kiss!`)
-            .setImage("https://i.gifer.com/2II9.gif")
-        message.channel.send({
-            embed: hembed
-        })
-        return;
-    }
-         }
-		break;
-		case "8ball":
-		 if (!args[2]) return message.reply("Please ask a full question!");
-    let replies = ["Yes, Certainly :8ball:", "No, Never :8ball:", "Please ask again :8ball:"]
-    let result = Math.floor((Math.random() * replies.length));
-
-    let question = args.slice().join(" ");
-
-    let embedz = new Discord.RichEmbed()
-        .setAuthor(message.author.username + " asked : " + question)
-        .setColor("#D3D3D3")
-        .addField("Answer", "Asked by " + message.author.tag + "\nAnswer: " + replies[result] + "")
-
-    message.channel.send(embedz)
-		break;
-		case "invites":
-			(async () => {
-    let invites = await message.guild.fetchInvites().catch(error => {
-        return message.channel.send('Sorry, I don\'t have the proper permissions to view invites!');
-    });
-  invites = invites.array();
-  arraySort(invites, 'Uses', { reverse: true})
-
-    let possibleinvites = [['User', 'Uses' ]];
-    invites.forEach(function(invites) {
-
-       possibleinvites.push([invites.inviter.username,invites.uses + "  " ]);
-        
-        
-    })
-
-    
-       
-      message.channel.send("Invite list : ");  
-    message.channel.send(`\`\`\`${table.table(possibleinvites)}\`\`\``);
-})();
 		
-
-    
-		break;
-		
-		case "ping":
-		var embed = new Discord.RichEmbed()
-    .setDescription(`**${message.author.tag}** | :ping_pong: Ping : ${bot.ping}ms`)
-    .setColor(0xCB5A5E)
-message.channel.send(embed)
-    .catch(console.error);
-		break;
-		case "guilds":
-		 // Lets define our array of guilds
-    const guildArray = bot.guilds.map((guild) => {
-    return `${guild.name} : ${guild.members.size} members`
-    })
-  
-    // And send it
-    message.channel.send(`\`\`\`${guildArray.join("\n")}\`\`\``)
-		break;
-	case "help":
-	help_embed = new Discord.RichEmbed()
-            .setColor('#4C1B1B')
-            .addField("Commandes BOT", "   !help : show commands! \n !hug : hug someone \n !kiss : kiss someone \n !guilds : show guilds \n !yt : play a video \n !purgemessage : bulk delete message \n !invites : show invites for the server \n !ping : ping a server \n  !8ball : 8ball command \n !uptime : show the uptime of the server \n")
-            
-		
-            .setFooter("Copyright © 2018 ZernaxBot - All Rights Reserved")
-            .setThumbnail(message.author.avatarURL)
-        message.channel.sendEmbed(help_embed);
-	break;
-        
-   case "play":
-            if (!args[1]) {
-                message.channel.sendMessage("Please provide a link");
-                return;
-            }
- 
-            if (!message.member.voiceChannel) {
-                message.channel.sendMessage("You must be in a voice channel");
-                return;
-            }
- 
-            if(!servers[message.guild.id]) servers[message.guild.id] = {
-                queue: []
-            };
- 
-            var server = servers[message.guild.id];
- 
-            server.queue.push(args[1]);
-        message.channel.sendMessage(args[1] + "Has been added to the queue");
-        
-           
-            if (!message.guild.voiceConnection) message.member.voiceChannel.join().then(function(connection) {
-                play(connection, message);
-            });
-            break;
-	  
-	  
-        
-          case "skip":
-            var server = servers[message.guild.id];
- 
-            if (server.dispatcher) server.dispatcher.end();
-            break;
-        case "stop":
-            var server = servers[message.guild.id];
-           
-            if (message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
-	   break;
 	  
 	   
 
   
-  }
+
   
   
  
-});
 
 
 
